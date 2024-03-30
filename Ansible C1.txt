@@ -1,0 +1,13 @@
+Ansible Inventory : list of servers
+
+there are two types of inventories:
+
+static and dynamic
+
+playbook - yaml language
+
+Playbook is a YAML file that defines a set of tasks or configurations to be applied to a set of hosts
+
+master and slaves are connected through ssh
+
+
