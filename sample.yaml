@@ -1,0 +1,15 @@
+---
+- hosts: ip/anyhosts/ all (from inventory)
+  user: ansible (user of host)
+  become: yes //performs action like a root user
+  connection: ssh
+
+  tasks:
+    - name: installing java-1.8.0
+      action: yum name=java-1.8.0-openjdk state=present
+
+    - name: installing maven
+      action: yum name=maven state=present
+
+    - name: installing tree
+      action: yum name=tree state=present

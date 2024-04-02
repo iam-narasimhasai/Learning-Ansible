@@ -1,3 +1,39 @@
+Here are some common Ansible commands that DevOps Engineers use:
+
+🐠 Inventory Management:
+♦ ansible-inventory: To view the current inventory.
+♦ ansible-inventory --graph: To visualize inventory as a graph.
+♦ ansible-inventory --list: To list all hosts in the inventory.
+
+🐠 Ad-Hoc Commands:
+♦ ansible: Run a single command on one or more managed nodes.
+Example: ansible all -m ping (ping all hosts).
+♦ ansible <group_name> -m <module_name> -a "<module_arguments>": Execute a module on a specific group of hosts. Example: ansible web_servers -m shell -a "uptime".
+
+🐠 Playbook Execution:
+♦ ansible-playbook: Run a playbook. Example: ansible-playbook deploy.yml.
+♦ ansible-playbook --syntax-check: Check syntax of playbook.
+♦ ansible-playbook --list-tasks: List tasks in a playbook without executing them.
+
+🐠 Roles:
+♦ ansible-galaxy init <role_name>: Initialize a new role.
+♦ ansible-galaxy install <role_name>: Install a role from Ansible Galaxy.
+♦ ansible-galaxy remove <role_name>: Remove a role.
+♦ ansible-galaxy list: List installed roles.
+
+🐠 Vault:
+♦ ansible-vault create <filename>: Create a new encrypted file.
+♦ ansible-vault edit <filename>: Edit an encrypted file.
+♦ ansible-vault encrypt <filename>: Encrypt an existing file.
+♦ ansible-vault decrypt <filename>: Decrypt an encrypted file.
+
+🐠 Dynamic Inventory Management:
+♦ ansible-inventory --refresh: Refresh dynamic inventory.
+♦ ansible-inventory --graph: Visualize dynamic inventory as a graph.
+
+🐠 Tags:
+Use tags in playbooks to execute specific tasks. Example: ansible-playbook deploy.yml --tags "nginx,php".
+
 Ansible Inventory : list of servers
 
 there are two types of inventories:
@@ -10,4 +46,60 @@ Playbook is a YAML file that defines a set of tasks or configurations to be appl
 
 master and slaves are connected through ssh
 
+
+yum install -y python-pip
+python --version
+useradd ansible
+passwd ansible
+visudo 100th line
+ansible ALL=(ALL)       NOPASSWD: ALL
+vi /etc/ssh/sshd_config 63rd line
+passwordauthentication yes
+systemctl restart sshd
+
+amazon-linux-extras install ansible2 -y
+
+cd /etc/ansible
+
+ansible.config then enable inventory and sudo_user
+
+inventory path : inventory      = /etc/ansible/hosts
+
+su - ansible
+
+ssh-copy-id ansible@172.31.2.235
+ansible all -m ping check all servers 
+
+
+Target section
+
+variable section
+
+tasks :
+git install 
+web server up 
+database install
+scp -i (key) ansible@ec2-43-204-228-72.ap-south-1.compute.amazonaws.com:/home/ansible/play1.yaml .
+
+---
+- hosts: dev
+  user: ansible
+  become: yes   //performs action like a root user
+  connection: ssh
+
+  tasks:
+    - name: installing git in dev servers
+      action: yum name=git state=present
+
+...
+
+state 
+INSTALL = PRESENT
+UNINSTALL = ABSENT
+UPDATE = LATEST
+START = STARTED
+RESTART = RESTARTED
+STOP = STOPPED
+
+ansible-playbook play1.yaml   //command to run a playbook
 

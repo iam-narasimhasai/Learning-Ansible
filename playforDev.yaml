@@ -1,0 +1,11 @@
+---
+- hosts: dev
+  user: ansible
+  become: yes
+  connection: ssh
+  
+  tasks:
+    - name: installing git in dev servers
+      action: yum name=git state=present
+
+
