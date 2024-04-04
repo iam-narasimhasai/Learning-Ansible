@@ -1,0 +1,25 @@
+---
+- hosts: dev
+  connection: ssh
+  become: yes
+  user: ansible
+
+  tasks:
+    - name: creating folder
+      file:
+        path: "/home/ansible/newfolder1"
+        state: directory
+
+    - name: creating file
+      file:
+        path: "/home/ansible/file1.java"
+        state: touch
+
+    - name: install httpd
+      action: yum name={{a}} state=present
+
+    - name: start httpd
+      service: name={{a}} state=started
+
+    - name: install git
+      yum: name={{b}} state=present

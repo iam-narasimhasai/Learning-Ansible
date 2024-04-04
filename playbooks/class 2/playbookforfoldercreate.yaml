@@ -1,0 +1,11 @@
+---
+- hosts: dev
+  connection: ssh
+  become: yes
+  user: ansible
+
+  tasks:
+    - name: create a new folder
+      file:
+        path: "/home/ansible/newfolder"
+        state: directory

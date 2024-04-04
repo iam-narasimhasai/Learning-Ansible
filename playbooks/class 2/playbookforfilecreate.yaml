@@ -1,0 +1,11 @@
+---
+- hosts: dev
+  connection: ssh
+  become: yes
+  user: ansible
+
+  tasks:
+    - name: create a new file
+      file:
+        path: "/home/ansible/sai.txt"
+        state: touch

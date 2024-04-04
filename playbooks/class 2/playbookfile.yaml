@@ -1,0 +1,14 @@
+---
+- hosts: dev
+  connection: ssh
+  user: ansible
+  become: yes
+
+  tasks:
+    - name: adding some data to file
+      copy:
+        dest: "/home/ansible/file.txt"
+        content: |
+          welcome to ansible
+          learning playbooks
+        

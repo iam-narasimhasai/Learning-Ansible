@@ -1,0 +1,15 @@
+---
+- hosts: dev
+  become: yes
+  user: ansible
+  connection: ssh
+
+  vars:
+    abc: git
+    xyz: tree
+  tasks:
+    - name: git installing
+      yum: name={{abc}} state=present
+
+    - name: tree installing
+      action: yum name={{xyz}} state=present
